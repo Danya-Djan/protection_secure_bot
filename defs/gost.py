@@ -16,44 +16,11 @@ def module(a):
     else:
         return a - 2 * a
 
-def MinusOneMod(exp, fi, file_name):
-    write_to_docx('---промежуточный расчет {} ^-1 mod {} ---'.format(exp, fi), file_name)
-    if fi == 0:
-        write_to_docx('Нельзя брать по модулю 0', file_name)
-        exit(0)
-    if exp == 1:
-        write_to_docx('1 mod {} = 1'.format(fi), file_name)
-        write_to_docx('---промежуточный расчет закончен---', file_name)
-        return 1
-    if exp == 0:
-        return 0
-    r = 0
-    q = 0
-    y = [0, 1]
-    mod = fi
-    coef_first = 0
-    coef_second = 1
-
-    write_to_docx('Запишем в таблице: (Элементы в () можно не писать)', file_name)
-    write_to_docx('(Запишем y в столбце справа:)', file_name)
-    write_to_docx(f'y[-2] = {y[0]}', file_name)
-    write_to_docx(f'y[-1] = {y[1]}', file_name)
-
-    while r != 1:
-        q = fi // exp
-        r = fi % exp
-        y.append(y[coef_first] - y[coef_second] * q)
-        write_to_docx('{} = (q{}){}*{} + r({}){} ,посчитаем y({}) = y({}){} - y({}){}*q({}){} = {}'
-                .format(fi, coef_first, q, exp,coef_first, r, coef_first, coef_first - 2, y[coef_first],
-                        coef_second - 2, y[coef_second], coef_first, q, y[coef_second + 1]), file_name)
-        fi = exp
-        exp = r
-        coef_first += 1
-        coef_second += 1
-
-    y[coef_second] %= mod
-    write_to_docx('---промежуточный расчет закончен---', file_name)
-    return y[coef_second]
+def MinusOneMod(exp, fi, filename):
+    write_to_docx('---промежуточный расчет {} ^-1 mod {} ---'.format(exp, fi), filename)
+    x = pow(exp, -1, fi)
+    write_to_docx(f'ПОЛУЧИЛИ: {x}---промежуточный расчет закончен---', filename)
+    return x
 
 def findDotMainFunc(x, y, a, f, c, file_name):
     resX = x
@@ -134,4 +101,4 @@ def gost(m, a, b, f, g_1, g_2, n, q_1, q_2, k, file_name):
     
     write_to_docx('\nОтвет: ({},{})'.format(c[0], Sy), file_name)
     
-gost(5, -13, -11, 17, 4, 16, 15, 10, 3, 4, "gost_test.docx")
+gost(5, -8, -5, 11, 8, 5, 15, 2, 3, 2, "gost_test.docx")

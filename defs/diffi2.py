@@ -27,7 +27,7 @@ def findDotMainFunc(x, y, a, f, c, filename):
             p = module(a)
             ch = pow(3 * resX ** 2 - p, 1, f)
             write_to_docx('(3x^2 - p) mod F = (3*{}^2 + ({}) )mod {} = {}'.format(x, a, f, ch), filename)
-            zn = MinusOneMod(pow(2 * resY, 1, f), f, filename)
+            zn = minusOneMod(pow(2 * resY, 1, f), f, filename)
             res = pow(ch * zn, 1, f)
             write_to_docx('lambda = ((3x^2 + а )/ 2y) mod F = ({} * {}) mod {} = {}'.format(ch, zn, f, res), filename)
             resXPrev = resX
@@ -45,7 +45,7 @@ def findDotMainFunc(x, y, a, f, c, filename):
                 break
             ch = pow(resY - y, 1, f)
             write_to_docx('y{} - y{} mod F = ({} - {}) mod {} = {}'.format(i + 1, i, resY, y, f, ch), filename)
-            zn = MinusOneMod(pow(resX - x, 1, f), f, filename)
+            zn = minusOneMod(pow(resX - x, 1, f), f, filename)
             write_to_docx('(x{} - x{})^-1 mod F = ({} - {})^-1 mod {} = {}'.format(i + 1, i, resX, x, f, zn), filename)
             res = pow(ch * zn, 1, f)
             write_to_docx('lambda = ({} * {}) mod {} = {}'.format(ch, zn, f, res), filename)
@@ -61,45 +61,11 @@ def findDotMainFunc(x, y, a, f, c, filename):
         write_to_docx('{}A + A = ({},{}) + ({},{}) = ({},{})'.format(i + 1,resXPrev, resYPrev, x, y,  resX, resY), filename)
     return l
 
-def MinusOneMod(exp, fi, filename):
+def minusOneMod(exp, fi, filename):
     write_to_docx('---промежуточный расчет {} ^-1 mod {} ---'.format(exp, fi), filename)
-    if fi == 0:
-        write_to_docx('Нельзя брать по модулю 0', filename)
-        exit(0)
-    if exp == 1:
-        write_to_docx('1 mod {} = 1'.format(fi), filename)
-        write_to_docx('---промежуточный расчет закончен---', filename)
-        return 1
-    if exp == 0:
-        return 0
-    r = 0
-    q = 0
-    y = [0, 1]
-    mod = fi
-    coef_first = 0
-    coef_second = 1
-
-    write_to_docx('Запишем в таблице: (Элементы в () можно не писать)', filename)
-    write_to_docx('(Запишем y в столбце справа:)', filename)
-    write_to_docx('y[-2] =' + str(y[0]), filename)
-    write_to_docx('y[-1] =' + str(y[1]), filename)
-
-    while r != 1:
-        q = fi // exp
-        r = fi % exp
-        y.append(y[coef_first] - y[coef_second] * q)
-        write_to_docx(
-            '{} = (q{}){}*{} + r({}){} ,посчитаем y({}) = y({}){} - y({}){}*q({}){} = {}'
-                .format(fi, coef_first, q, exp,coef_first, r, coef_first, coef_first - 2, y[coef_first],
-                        coef_second - 2, y[coef_second], coef_first, q, y[coef_second + 1]), filename)
-        fi = exp
-        exp = r
-        coef_first += 1
-        coef_second += 1
-
-    y[coef_second] %= mod
-    write_to_docx('---промежуточный расчет закончен---', filename)
-    return y[coef_second]
+    x = pow(exp, -1, fi)
+    write_to_docx(f'ПОЛУЧИЛИ: {x}---промежуточный расчет закончен---', filename)
+    return x
 
 
 
@@ -114,4 +80,4 @@ def deffi2(generator1, generator2, a, b, F, alisa, bob, filename):
     write_to_docx('\nОбщий сеансовый ключ s =' + str(vec), filename)
     return vec
 
-deffi2(14, 8, -8, -1, 17, 2, 3, 'deffi2_test.docx')
+deffi2(6, 16, -3, -10, 17, 2, 3, 'diffi2_test.docx')

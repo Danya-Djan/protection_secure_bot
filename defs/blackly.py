@@ -38,43 +38,9 @@ def Gauss(A, F):
 
 def minusOneMod(exp, fi, filename):
     write_to_docx('---промежуточный расчет {} ^-1 mod {} ---'.format(exp, fi), filename)
-    if fi == 0:
-        write_to_docx('Нельзя брать по модулю 0', filename)
-        exit(0)
-    if exp == 1:
-        write_to_docx('1 mod {} = 1'.format(fi), filename)
-        write_to_docx('---промежуточный расчет закончен---', filename)
-        return 1
-    if exp == 0:
-        return 0
-    r = 0
-    q = 0
-    y = [0, 1]
-    mod = fi
-    coef_first = 0
-    coef_second = 1
-
-    write_to_docx('Запишем в таблице: (Элементы в () можно не писать)', filename)
-    write_to_docx('(Запишем y в столбце справа:)', filename)
-    write_to_docx('y[-2] =' + str(y[0]), filename)
-    write_to_docx('y[-1] =' + str(y[1]), filename)
-
-    while r != 1:
-        q = fi // exp
-        r = fi % exp
-        y.append(y[coef_first] - y[coef_second] * q)
-        write_to_docx(
-            '{} = (q{}){}*{} + r({}){} ,посчитаем y({}) = y({}){} - y({}){}*q({}){} = {}'
-                .format(fi, coef_first, q, exp,coef_first, r, coef_first, coef_first - 2, y[coef_first],
-                        coef_second - 2, y[coef_second], coef_first, q, y[coef_second + 1]), filename)
-        fi = exp
-        exp = r
-        coef_first += 1
-        coef_second += 1
-
-    y[coef_second] %= mod
-    write_to_docx('---промежуточный расчет закончен---', filename)
-    return y[coef_second]
+    x = pow(int(exp), -1, fi)
+    write_to_docx(f'ПОЛУЧИЛИ: {x}---промежуточный расчет закончен---', filename)
+    return x
 
 def Gauss_finite(A, F, p, filename):
     n = len(A)
@@ -117,12 +83,13 @@ def blackly(p, n, numbers_in_sled, two_dimension, filename):
     fs = fs.reshape(a-1,1)
     write_to_docx('Берем {} любые суперплоскости из следов (все вычисления в F{}):'.format(a - 1, p), filename)
     for i in range(0, a - 1):
+        st = ''
         for j in range (0, a):
             if j != a - 1:
-                write_to_docx('{} * x{} + '.format(arr[i][j], j + 1) + str("здесь нет переноса строки"), filename)
+                st += ('{} * x{} + '.format(arr[i][j], j + 1))
             if j == a - 1:
-                write_to_docx(str(arr[i][j]) + str(" здесь нет переноса строки"), filename)
-        write_to_docx(' = 0', filename)
+                st += (str(arr[i][j]))
+        write_to_docx(st + ' = 0', filename)
 
     write_to_docx('Выразив коэффициенты получаем:', filename)
     ans = Gauss_finite(arr, fs, p, filename)
@@ -130,4 +97,4 @@ def blackly(p, n, numbers_in_sled, two_dimension, filename):
         write_to_docx(f'x{i+1} = {ans[i]}', filename)
     return ans
 
-blackly(11, 4, 4, [[5, 10, 3, 4], [6, 7, 8, 3], [6,8,7,8]],"blackly_test.docx")
+blackly(11, 4, 4, [[2, 4, 10, 8], [8, 2, 2, 3], [3,4,2,8]],"blackly_test.docx")

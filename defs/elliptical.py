@@ -10,31 +10,10 @@ def write_to_docx(text, file_path):
     document.save(file_path)    
 #exp^-1 mod fi
 def MinusOneMod(exp, fi, filename):
-    r = 0
-    g = 0
-    y  = [0, 1]
-    mod = fi
-    expAns = exp
-    coef_first = 0
-    coef_second = 1
-    write_to_docx('(Запишем y в столбце справа:)', filename)
-    write_to_docx(f'y[-2] = {y[0]}', filename)
-    write_to_docx(f'y[-1] = {y[1]}', filename)
-
-    while r != 1:
-        g = fi // exp
-        r = fi % exp
-        y.append(y[coef_first] - y[coef_second]*g)
-        write_to_docx('{} = (g{}){}*{} + r({}){} ,посчитаем y({}) = y({}){} - y({}){}*g({}){} = {}'
-              .format(fi, coef_first, g, exp, coef_first, r, coef_first, coef_first - 2,
-                      y[coef_first], coef_second - 2, y[coef_second], coef_first, g, y[coef_second + 1]), filename)
-        fi = exp
-        exp = r
-        coef_first += 1
-        coef_second += 1
-    y[coef_second] %= mod
-    write_to_docx('Ответ {}^-1 mod {} = {}'.format(expAns, mod, y[coef_second]), filename)
-    return y[coef_second]
+    write_to_docx('---промежуточный расчет {} ^-1 mod {} ---'.format(exp, fi), filename)
+    x = pow(exp, -1, fi)
+    write_to_docx(f'ПОЛУЧИЛИ: {x}---промежуточный расчет закончен---', filename)
+    return x
 
 def findDotMainFunc(x, y, a, f, c, filename):
     resX = x
@@ -95,4 +74,4 @@ def elliptical(filename, x, y, a, b, f, c = 2):
     l += findDotMainFunc(x, y, a, f, c, filename)
     write_to_docx(str(l), filename)
     
-elliptical('elliptical_test.docx', 6, 6, -12, -6, 17)
+elliptical('elliptical_test.docx', 9, 6, -8, -5, 11)

@@ -78,4 +78,4 @@ def diffi_private(g, p, a, b, filename):
   write_to_docx('Сеансовый ключ s = B^a mod p = {}^{} mod {} = {}'.format(B, a, p, s1), filename)
   write_to_docx('Сеансовый ключ s = A^b mod p = {}^{} mod {} = {}'.format(A, b, p, s2), filename)
   
-diffi_public(6, 17, 12, 15, "diffi_test.docx")
+diffi_public(14, 17, 13, 10, "diffi_test.docx")
