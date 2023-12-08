@@ -94,3 +94,5 @@ def elliptical(filename, x, y, a, b, f, c = 2):
     l = []
     l += findDotMainFunc(x, y, a, f, c, filename)
     write_to_docx(str(l), filename)
+    
+elliptical('name.docx', 4, 16, -13, -11, 17)

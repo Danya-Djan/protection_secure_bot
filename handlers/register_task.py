@@ -44,14 +44,31 @@ kb_tasks.row(b5)
 kb_tasks.row(b6)
 kb_tasks.row(b7)
 
+b1 = KeyboardButton("Зашифровать RSA")
+b2 = KeyboardButton("Простота по Миллеру")
+b3 = KeyboardButton("Подпись RSA")
+b4 = KeyboardButton("Расшифровать RSA")
+b5 = KeyboardButton("Зашифровать Эль-Гамаля")
+b6 = KeyboardButton("Подпись Эль-Гамаля")
+b7 = KeyboardButton("Элиптическая кривая с a и b")
+
+kb_tasks_3 = ReplyKeyboardMarkup(resize_keyboard=True)
+
+kb_tasks_3.row(b1)
+kb_tasks_3.row(b2)
+kb_tasks_3.row(b3)
+kb_tasks_3.row(b4)
+kb_tasks_3.row(b5)
+kb_tasks_3.row(b6)
+kb_tasks_3.row(b7)
+
 def generate_short_uuid():
     full_uuid = str(uuid.uuid4())
     short_uuid = full_uuid[:5]
     return str(short_uuid)
 
-
 async def command_start(message : types.Message):
-    await bot.send_message(message.from_user.id, "Выберите, какую задачу будем решать:", reply_markup=kb_tasks)
+    await bot.send_message(message.from_user.id, "Выберите, какую задачу будем решать:", reply_markup=kb_tasks_3)
 
 async def start_task(message : types.Message, state:FSMContext):
     if message.from_user.username in user_list:
