@@ -134,4 +134,4 @@ def gost(m, a, b, f, g_1, g_2, n, q_1, q_2, k, file_name):
     
     write_to_docx('\nОтвет: ({},{})'.format(c[0], Sy), file_name)
     
-gost(5, -13, -11, 17, 4, 16, 15, 10, 3, 4, "name.docx")
+gost(5, -13, -11, 17, 4, 16, 15, 10, 3, 4, "gost_test.docx")
