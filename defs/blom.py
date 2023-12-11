@@ -54,4 +54,4 @@ def Blom(p, Ax, Ay, AxClosed, AyClosed, Bx, By, BxClosed, ByClosed, filename):
     write_to_docx('Общий сеансовый ключ S = Sa = Sb = (закр А)(откр B) = ({},{})({},{})(<- 2ю вертикально) = {} mod {} = {}'
       .format(AxClosed, AyClosed, Bx, By, AxClosed*Bx + AyClosed*By, p, s), filename)
     
-Blom(11, 8, 4, 10, 5 , 2, 5, 2, 10, "blom_test.docx")
+# Blom(11, 8, 4, 10, 5 , 2, 5, 2, 10, "blom_test.docx")

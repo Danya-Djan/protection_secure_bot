@@ -76,7 +76,7 @@ def Gauss_finite(A, F, p, filename):
     return ans
 
 
-def blackly(p, n, numbers_in_sled, two_dimension, filename):
+def blackly(p, numbers_in_sled, two_dimension, filename):
     a = numbers_in_sled
     arr = two_dimension #np.asarray
     fs = np.zeros(a-1)
@@ -95,6 +95,6 @@ def blackly(p, n, numbers_in_sled, two_dimension, filename):
     ans = Gauss_finite(arr, fs, p, filename)
     for i in range(a-1):
         write_to_docx(f'x{i+1} = {ans[i]}', filename)
-    return ans
+    return f'{ans}\nПервое число - ответ'
 
-blackly(11, 4, 4, [[2, 4, 10, 8], [8, 2, 2, 3], [3,4,2,8]],"blackly_test.docx")
+# blackly(11, 4, [[2, 4, 10, 8], [8, 2, 2, 3], [3,4,2,8]], "blackly_test.docx")

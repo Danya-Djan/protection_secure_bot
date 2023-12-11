@@ -64,6 +64,8 @@ def diffi_public(g, p, a, b, filename):
   s2 = pow(a, bCounter, p)
   write_to_docx('Сеансовый ключ s = B^a mod p = {}^{} mod {} = {}'.format(b, aCounter, p, s1), filename)
   write_to_docx('Сеансовый ключ s = A^b mod p = {}^{} mod {} = {}'.format(a, bCounter, p, s2), filename)
+  final = f'{aCounter}, {s1}\n\n{bCounter}, {s2}'
+  return final
 
 def diffi_private(g, p, a, b, filename):
   A = pow(g, a, p)
@@ -77,5 +79,7 @@ def diffi_private(g, p, a, b, filename):
   s2 = pow(A, b, p)
   write_to_docx('Сеансовый ключ s = B^a mod p = {}^{} mod {} = {}'.format(B, a, p, s1), filename)
   write_to_docx('Сеансовый ключ s = A^b mod p = {}^{} mod {} = {}'.format(A, b, p, s2), filename)
+  final = f'{B}, {a}, {p}, {s1}\n\n{A}, {b}, {p}, {s2}'
+  return final
   
-diffi_public(14, 17, 13, 10, "diffi_test.docx")
+# diffi_public(14, 17, 13, 10, "diffi_test.docx")

@@ -72,6 +72,8 @@ def module(a):
 def elliptical(filename, x, y, a, b, f, c = 2):
     l = []
     l += findDotMainFunc(x, y, a, f, c, filename)
+    l.append(0)
     write_to_docx(str(l), filename)
+    return str(l)
     
-elliptical('elliptical_test.docx', 9, 6, -8, -5, 11)
+# elliptical('elliptical_test.docx', 9, 6, -8, -5, 11)

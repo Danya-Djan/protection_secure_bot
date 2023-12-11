@@ -69,7 +69,7 @@ def minusOneMod(exp, fi, filename):
 
 
 
-def deffi2(generator1, generator2, a, b, F, alisa, bob, filename):
+def diffi2(generator1, generator2, a, b, F, alisa, bob, filename):
     write_to_docx('A = a*G = {}*({} {})\n'.format(alisa, generator1, generator2), filename)
     vec = findDotMainFunc(generator1, generator2, a, F, alisa - 1, filename)
     vec = vec[len(vec) - 1]
@@ -80,4 +80,4 @@ def deffi2(generator1, generator2, a, b, F, alisa, bob, filename):
     write_to_docx('\nОбщий сеансовый ключ s =' + str(vec), filename)
     return vec
 
-deffi2(6, 16, -3, -10, 17, 2, 3, 'diffi2_test.docx')
+# diffi2(6, 16, -3, -10, 17, 2, 3, 'diffi2_test.docx')

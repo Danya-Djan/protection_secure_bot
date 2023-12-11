@@ -54,4 +54,8 @@ def group_points(a, b, n, file_name):
     write_to_docx('Точки: ' + str(Result), file_name)
     write_to_docx('Размер группы точек:' + str(len(Result)), file_name)
     
-group_points(-8, -5, 11, "group_points_test.docx")
+    final = f'{str(Result)}\n\n{str(len(Result))}'
+    
+    return final
+    
+# group_points(-8, -5, 11, "group_points_test.docx")

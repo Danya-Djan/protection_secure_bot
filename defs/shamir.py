@@ -17,8 +17,7 @@ def minusOneMod(exp, fi, filename):
 
 def Shamir(p, x1, y1, x2, y2, x3, y3, filename):
     arr = []
-    write_to_docx('F(X) = Σl  li(x)yi\nli(x) = ∏j  x - xj/ xi - xj', filename)
-    write_to_docx('l1(x) = (x - x2)/(x1 - x2) * (x - x3)/(x1 - x3) = (x - {})/({} - {}) * (x - {})/({} - {}) ='
+    write_to_docx('l_1(x) = (x - x2)/(x1 - x2) * (x - x3)/(x1 - x3) = (x - {})/({} - {}) * (x - {})/({} - {}) ='
       .format(x2, x1, x2, x3, x1, x3), filename)
     znam = pow((x1- x2)*(x1-x3), 1, p)
     a = 1
@@ -32,7 +31,7 @@ def Shamir(p, x1, y1, x2, y2, x3, y3, filename):
     write_to_docx('=(({})x^2 + ({})x + {}'.format(a, b, c), filename)
     arr.append([a, b, c])
 
-    write_to_docx('l2(x) = (x - x1)/(x2 - x1) * (x - x3)/(x2 - x3) = (x - {})/({} - {}) * (x - {})/({} - {}) ='
+    write_to_docx('l_2(x) = (x - x1)/(x2 - x1) * (x - x3)/(x2 - x3) = (x - {})/({} - {}) * (x - {})/({} - {}) ='
       .format(x1, x2, x1, x3, x2, x3), filename)
     znam = pow((x2 - x1)*(x2 - x3), 1, p)
     a = 1
@@ -46,7 +45,7 @@ def Shamir(p, x1, y1, x2, y2, x3, y3, filename):
     write_to_docx('=(({})x^2 + ({})x + {}'.format(a, b, c), filename)
     arr.append([a, b, c])
 
-    write_to_docx('l3(x) = (x - x1)/(x3 - x1) * (x - x2)/(x3 - x2) = (x - {})/({} - {}) * (x - {})/({} - {}) ='
+    write_to_docx('l_3(x) = (x - x1)/(x3 - x1) * (x - x2)/(x3 - x2) = (x - {})/({} - {}) * (x - {})/({} - {}) ='
       .format(x1, x3, x1, x2, x3, x2), filename)
     znam = pow((x3 - x1)*(x3 - x2), 1, p)
     a = 1
@@ -73,7 +72,7 @@ def Shamir(p, x1, y1, x2, y2, x3, y3, filename):
       .format(arr[0][2], arr[1][2], arr[2][2], arr[0][2], y1, arr[1][2], y2, arr[2][2], y3, arr[0][2]*y1 + arr[1][2]*y2 + arr[2][2]*y3, p , M), filename)
 
     write_to_docx('Ответ будет вида ax^2 + bx + m = {}x^2 + {}x + {} <= последний член - секрет'.format(a, b, M), filename)
-    return a, b, M
+    return f'{a}, {b}, {M} <- секрет'
 
 
-Shamir(11, 4, 3, 5, 8, 6, 1, "shamir_test.docx")
+# Shamir(11, 4, 3, 5, 8, 6, 1, "shamir_test.docx")
